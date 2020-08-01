@@ -4,37 +4,38 @@
 \name{ds_aat}
 \alias{ds_aat}
 \title{Example Approach Avoidance Task (AAT) Measurement Data in JASMIN2 Format}
-\format{An object of class \code{data.frame} with 24480 rows and 13 columns.}
+\format{
+An object of class \code{data.frame} with 6528 rows and 12 columns.
+}
 \usage{
 ds_aat
 }
 \description{
-The JASMIN2 AAT was an irrelevant feature task, in which participants were instructed to
-approach/avoid left/right rotated stimuli. This particular AAT presented stimuli from a "test"
-category, which were math-related pictures, and from a "control" category, which were pictures unrelated
-to math. It registered approach responses by participants pressing (and holding) the arrow down key,
+The JASMIN1 AAT was an irrelevant feature task, in which participants were instructed to
+approach/avoid left/right rotated stimuli. This particular AAT was administered (and described in detail) in 
+\href{https://doi.org/10.1111/add.14071}{Boffo et al., 2018}. Participants were presented stimuli from a "test"
+category, which were gambling-related pictures, and from a "control" category, which were pictures unrelated
+to gambling. It registered approach responses by participants pressing (and holding) the arrow down key,
 while avoid responses were given via the arrow up key. Upon a response, the stimulus zoomed in or
-out, until it disappeared from the screen. The first response to a stimulus was logged, as well as the final
-response, as defined by the stimulus completely zooming in or out. Upon a correct final response
-the next trial started and upon an incorrect final response the current trial was repeated. The first and final
-response to each trial was logged. The dataset contains one row per trial.
+out, until it disappeared from the screen. The first response to a stimulus was logged. 
+The dataset contains one row per trial.
 This dataset was graciously provided by \href{https://www.researchgate.net/profile/Eva_Schmitz4}{Eva Schmitz}.
 }
 \details{
+Overview of columns:
 \itemize{
   \item UserID. Identifies participants
-  \item approach_left. If TRUE, participants were instructed to approach left rotated stimuli. If FALSE, participants were instructed to approach right rotated stimuli.
-  \item trial_type. Values: "approach" or "avoid"
-  \item cat. Stimulus category: practice, test, or control
-  \item stim. Stimulus
-  \item response. Initial response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 4000 ms), 4 = invalid key
-  \item rt. Response time in milliseconds
-  \item sust. Was approach or avoid response sustained until the stimulus was completely zoomed in or out?
-  \item final_response. Final response; the response that ended the current trial. Possible values are the same as for response
+  \item approach_tilt. If "left", participants were instructed to approach left rotated stimuli. If "right", participants were instructed to approach right rotated stimuli.
+  \item block_type. Type of block: "practice" for practice trials with neutral stimuli, "assess" for assessment trials with salient stimuli
   \item block. Counts blocks, starting at zero
   \item trial. Counts trials in blocks, starting at zero
-  \item attempt. Counts attempts (responses) in trials, starting at zero
-  \item block_type. Type of block: "assess1" and "assess2" for assessment trials with salient stimuli
+  \item appr. If "yes", this trial was an approach trial. If "no", this trial was an avoid trial.
+  \item tilt. Whether the stimulus was rotated to the "left" or to the "right"
+  \item cat. Stimulus category: "practice", "test", or "control"
+  \item stim. Stimulus ID
+  \item response. Response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 4000 ms), 4 = invalid key
+  \item rt. Response time in milliseconds
+  \item sust. Was approach or avoid response sustained until the stimulus was completely zoomed in or out?
 }
 }
 \keyword{datasets}

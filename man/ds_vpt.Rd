@@ -4,7 +4,9 @@
 \name{ds_vpt}
 \alias{ds_vpt}
 \title{Example Visual Probe Task (VPT) Measurement Data in JASMIN1 Format}
-\format{An object of class \code{data.frame} with 19520 rows and 12 columns.}
+\format{
+An object of class \code{data.frame} with 19520 rows and 12 columns.
+}
 \usage{
 ds_vpt
 }
@@ -22,6 +24,7 @@ The dataset contains one row per trial.
 This dataset was graciously provided by \href{https://www.researchgate.net/profile/Marilisa_Boffo}{Marilisa Boffo}.
 }
 \details{
+Overview of columns:
 \itemize{
   \item UserID. Identifies participants
   \item patt. Probe-at-test. If "yes", the probe was positioned at the test stimulus. If "no", the probe was positioned at the control stimulus.
@@ -30,7 +33,7 @@ This dataset was graciously provided by \href{https://www.researchgate.net/profi
   \item keep. If "yes" the probe was superimposed on the stimuli. If "no" the probe replaced the stimuli.
   \item pdir. Probe direction. Values: "up" or "down"
   \item stim. Stimulus
-  \item response. Response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 5000 ms), 4 = invalid key
+  \item response. Response; 1 = correct, 2 = incorrect, 3 and NA = timeout (no response in 5000 ms), 4 = invalid key
   \item rt. Response time in milliseconds
   \item block. Counts blocks, starting at zero
   \item trial. Counts trials in blocks, starting at zero

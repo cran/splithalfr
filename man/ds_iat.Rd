@@ -4,7 +4,9 @@
 \name{ds_iat}
 \alias{ds_iat}
 \title{Example Implicit Association Task (IAT) Data in JASMIN2 Format}
-\format{An object of class \code{data.frame} with 3568 rows and 11 columns.}
+\format{
+An object of class \code{data.frame} with 9696 rows and 11 columns.
+}
 \usage{
 ds_iat
 }
@@ -13,27 +15,24 @@ The JASMIN2 IAT closely followed the original IAT procedure
 (\href{https://dx.doi.org/10.1037/0022-3514.74.6.1464}{Greenwald, McGhee, & Schwartz, 1998}),
 except that target and attribute trials did not alternate.  Upon a correct response, the next trial started.
 Upon an incorrect response, the current trial was repeated. The response to each trial was logged.
-This particular dataset is from a Drinker Identity IAT
-(\href{https://dx.doi.org/10.1037/a0027640}{Lindgren et al., 2013})
-that was used in a cross-cultural study. Drinker was target 1, non-drinker was target 2, me was attribute 1, and not-me was attribute 2.
-The dataset contains one row per trial.
-This dataset was graciously provided by \href{https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en}{Helle Larsen}.
+This particular dataset is from a Ethnicity-Valence IAT, which was administered (and described in detail) in 
+\href{https://doi.org/10.1016/j.tate.2019.102887}{Abacioglu and colleagues (2019)}. 
+This dataset was graciously provided by \href{https://www.uva.nl/en/profile/h/a/f.hanna/f.hanna.html}{Fadie Hanna} and \href{https://www.researchgate.net/profile/Marjolein_Zee}{Marjolein Zee}.
 }
 \details{
 Overview of columns:
-
 \itemize{
-  \item UserID. Identifies participants
+  \item participation_id Identifies participants
   \item t1_left. If TRUE, the first combination block had target 1 on the left (and target 2 on the right)
   \item a1_left. If TRUE, the first combination block had attribute 1 on the left (and attribute 2 on the right)
+  \item block_type. Type of block
+  \item block. Counts blocks, starting at zero
+  \item trial. Counts trials in blocks, starting at zero
+  \item attempt. Counts attempts (responses) in trials, starting at zero
   \item cat. Category that stimulus belonged to
   \item stim. Stimulus
   \item response. Response; 1 = correct, 2 = incorrect, 3 = timeout (no response in 4000 ms), 4 = invalid key
   \item rt. Response time in milliseconds. Note that some response times may exceed the timeout window due to clock errors on the computer that the IAT was administered
-  \item block. Counts blocks, starting at zero
-  \item trial. Counts trials in blocks, starting at zero
-  \item attempt. Counts attempts (responses) in trials, starting at zero
-  \item block_type. Type of block
 }
 The variable block_type can have these values:
 \itemize{

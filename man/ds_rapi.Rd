@@ -4,13 +4,15 @@
 \name{ds_rapi}
 \alias{ds_rapi}
 \title{Example 23-item Rutgers Alcohol Problem Inventory (RAPI) data}
-\format{An object of class \code{data.frame} with 426 rows and 24 columns.}
+\format{
+An object of class \code{data.frame} with 426 rows and 24 columns.
+}
 \usage{
 ds_rapi
 }
 \description{
 The RAPI is a questionnaire which asks how often a participant experienced each of 23 alcohol-related
-problems within the last year (\href{https://research.alcoholstudies.rutgers.edu/rapi}{White & Labouvie, 1989}).
+problems within the last year (\href{http://www.emcdda.europa.eu/html.cfm/index4200EN.html}{White & Labouvie, 1989}).
 The dataset contains one row per participant.
 }
 \details{

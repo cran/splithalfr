@@ -1,5 +1,5 @@
 ---
-title: "RAPI Sum Score"
+title: "RAPI - Sum Score"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{rapi_sum}
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 library(splithalfr)
 ```
 This vignette describes a sum score of answers on questions from the 23-item Rutgers Alcohol Problem Inventory (RAPI)
-([White & Labouvie, 1989](https://research.alcoholstudies.rutgers.edu/rapi));
+([White & Labouvie, 1989](http://www.emcdda.europa.eu/html.cfm/index4200EN.html));
 
 <br />
 
@@ -28,80 +28,94 @@ Load the included RAPI dataset and inspect its documentation.
 data("ds_rapi", package = "splithalfr")
 ?ds_rapi
 ```
+
+## Data preparation
+The RAPI dataset is in wide format (i.e. one row per participant with each observation in a separate column). However, the `splithalfr` requires long format (i.e. one row per observation). Below we reshape the RAPI dataset to long format. 
+```
+ds_rapi <- reshape(
+  ds_rapi,
+  varying = list(paste("V", 1 : 23, sep = "")),
+  idvar = "twnr",
+  direction = "long",
+  timevar = "item",
+  v.names = "score"
+)
+```
+
 ## Relevant variables
 The columns used in this example are:
 
-* twnr, which identifies participants
-* V1 to V23, which contain answers to each of the 23 RAPI items
+* `twnr`, which identifies participants
+* `item`, which identifies items
+* `score`, which contains the score of participant i on item j
 
 <br />
 
 # Scoring the RAPI
-Writing a scoring method for the splithalfr requires implementing two functions; a **sets** function that describes which sets of data should be split into halves and a **score** function that calculates a score. 
 
-## Defining the sets function
-The sets function receives data from a single participant and returns a list of datasets. In this case, we will generate a list with a single element, which contains a vector with data from each of the 23 items. As this data should be split by columns, we deliver the data as a vector.
+## Scoring function
+The scoring function calculates the score of a single participant by summing their scores on each item.
 ```
-rapi_fn_sets <- function (ds) {
-  return (list(
-    items = unlist(ds[paste("V", 1 : 23, sep = "")])
-  ))
+fn_score <- function (ds) {
+  return (sum(ds$score))
 }
 ```
 
-## Defining the score function
-The score function receives the list from a single participant and returns the sum score.
+## Scoring a single participant
+Let's calculate the RAPI score for the participant with twnr 396. NB - This score has also been calculated manually via Excel in the splithalfr repository.
 ```
-rapi_fn_score <- function (sets) {
-  return (sum(sets$items))
-}
+fn_score(subset(ds_rapi, twnr == 396))
 ```
 
-## Calculating a score without the splithalfr
-By combining the sets and score functions, a score for a single participant can be calculated. For instance, the score of UserID 1 can be calculated via the statement below.
+## Scoring all participants
+To calculate the RAPI score for each participant, we will use R's native `by` function and convert the result to a data frame.
 ```
-rapi_fn_score(rapi_fn_sets(subset(ds_rapi, twnr == 1)))
+scores <- by(
+  ds_rapi,
+  ds_rapi$twnr,
+  fn_score
+)
+data.frame(
+  twnr = names(scores),
+  score = as.vector(scores)
+)
 ```
-
-## Calculating scores with the splithalfr
-To calculate scores for each participant, call sh_apply with four arguments: 
-
-1. the dataset
-2. the column that identifies participants in the dataset
-3. the sets function
-4. the score function
-
-The sh_apply function will return a data frame with one row per participant, and two columns: one that identifies participants ("twnr" in this example) and a column "score", that contains the output of the score function.
-```
-rapi_scores <- sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score)
-```
-
-## Checking scores
-It is recommended to check your scoring method by calculating the score of a representative participant via a different approach. For splithalfr tests, the author has done so via Excel. 
 
 <br />
 
 # Estimating split-half reliability
 
 ## Calculating split scores
-To calculate split-half scores for each participant, call sh_apply with an additional split_count argument, which specifies how many splits should be calculated. For each participant and split, the splithalfr will randomly divide the dataset of each element of sets into two halves that differ at most by one in size. When called with a split_count argument that is higher than zero, sh_apply returns a data frame with the following columns:
+To calculate split-half scores for each participant, use the function `by_split`. The first three arguments of this function are the same as for `by`. An additional set of arguments allow you to specify how to split the data and how often. In this vignette we will calculate scores of 1000 bootstrapped splits. Since each participant received the same unique sequence of items, we enabled `match_participants`. See the vignette on splitting methods for more ways to split the data.
 
-* twnr, which identifies participants
-* split, which counts splits
-* score_1, and score_2, which are the scores calculated for each of the split datasets
+The `by_split` function returns a data frame with the following columns:
+
+* `participant`, which identifies participants
+* `replication`, which counts replications
+* `score_1` and `score_2`, which are the scores calculated for each of the split datasets
+
+*Calculating the split scores may take a while. By default, `by_split` uses all available CPU cores, but no progress bar is displayed. Setting `ncores = 1` will display a progress bar, but processing will be slower.*
 
 ```
-rapi_splits <- sh_apply(ds_rapi, "twnr", rapi_fn_sets, rapi_fn_score, split_count = 1000)
+split_scores <- by_split(
+  ds_rapi,
+  ds_rapi$twnr,
+  fn_score,
+  replications = 1000,
+  match_participants = TRUE
+)
 ```
 
-## Estimating reliability averaged over splits
-Next, the output of sh_apply can be analyzed in order to estimate reliability. By default, functions are provided that automatically calculate mean Spearman-Brown (mean_sb_by_split) and Flanagan-Rulon (mean_fr_by_split) coefficients. If any missing values were encountered in the data provided to these functions, they give a warning, and then pairwise remove the missing data before calculating reliability.
+## Calculating reliability coefficients
+Next, the output of `by_split` can be analyzed in order to estimate reliability. By default, functions are provided that calculate Spearman-Brown adjusted Pearson correlations (`spearman_brown`), Flanagan-Rulon (`flanagan_rulon`), Angoff-Feldt (`angoff_feldt`), and Intraclass Correlation (`short_icc`) coefficients. Each of these coefficient functions can be used with `split_coef` to calculate the corresponding coefficients per split, which can then be plotted or averaged via a simple `mean`. A bias-corrected and accelerated bootstrap confidence interval can be calculated via `split_ci`.
+
 ```
-# Flanagan-Rulon
-mean_fr_by_split(rapi_splits)
+# Spearman-Brown adjusted Pearson correlations per replication
+coefs <- split_coefs(split_scores, spearman_brown)
+# Distribution of coefficients
+hist(coefs)
+# Mean of coefficients
+mean(coefs)
+# Confidence interval of coefficients
+split_ci(split_scores, coefs)
 ```
-
-
-
-
-

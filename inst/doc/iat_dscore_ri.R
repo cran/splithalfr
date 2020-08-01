@@ -1,4 +1,4 @@
-## ---- include = FALSE----------------------------------------------------
+## ---- include = FALSE---------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   message = FALSE,
@@ -6,7 +6,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ----setup, message = FALSE, warning = FALSE-----------------------------
+## ----setup, message = FALSE, warning = FALSE----------------------------------
 library(splithalfr)
 library(dplyr)
 
