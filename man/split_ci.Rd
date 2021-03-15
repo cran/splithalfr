@@ -50,12 +50,12 @@ Efron (1987).
 
   Efron, B. (1987). Better bootstrap confidence intervals. \emph{Journal of the
   American statistical Association}, 82(397), 171-185.
-  \href{https://doi.org/10.1080/01621459.1987.10478410}{https://doi.org/10.1080/01621459.1987.10478410}
+  \doi{10.1080/01621459.1987.10478410}
 
  Feldt, L. S., & Charter, R. A. (2006). Averaging internal consistency
  reliability coefficients. \emph{Educational and Psychological Measurement},
  66(2), 215-227.
- \href{https://doi.org/10.1177/0013164404273947}{https://doi.org/10.1177/0013164404273947}
+ \doi{10.1177/0013164404273947}
 }
 
 \examples{

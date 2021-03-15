@@ -16,7 +16,7 @@ angoff_feldt(x, y)
 }
 \description{
 Angoff-Feldt reliability coefficient.
-Formula obtained from \href{https://link.springer.com/article/10.1007/s11634-015-0198-6}{(Warrens, 2015)}
+Formula obtained from Warrens (2015) <\doi{10.1007/s11634-015-0198-6}>
 }
 \examples{
 # Generate two variables with different means, variances and a correlation of about 0.5

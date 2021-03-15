@@ -13,8 +13,8 @@ ds_gng
 \description{
 The Go/No Go is a task in which participants respond to one set of stimuli, but withhold a response
 to another set of stimuli. This particular dataset is from the first session of a study that is 
-described in detail in \href{https://doi.org/10.1016/j.tate.2019.102887}{Hedge, Powell, and Sumner (2018)}. 
-It was graciously provided by \href{https://www.researchgate.net/profile/Craig_Hedge}{Craig Hedge} and can
+described in detail in \doi{10.1016/j.tate.2019.102887}{Hedge, Powell, and Sumner (2018)}. 
+It was graciously provided by \href{https://www.researchgate.net/profile/Craig-Hedge}{Craig Hedge} and can
 be obtained from \href{https://osf.io/cwzds}{https://osf.io/cwzds}.
 }
 \details{

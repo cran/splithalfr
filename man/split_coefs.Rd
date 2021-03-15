@@ -34,8 +34,7 @@ see Feldt and Charter (2006).
 
  Feldt, L. S., & Charter, R. A. (2006). Averaging internal consistency
  reliability coefficients. \emph{Educational and Psychological Measurement},
- 66(2), 215-227.
- \href{https://doi.org/10.1177/0013164404273947}{https://doi.org/10.1177/0013164404273947}
+ 66(2), 215-227. \doi{10.1177/0013164404273947}
 }
 
 \examples{

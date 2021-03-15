@@ -13,13 +13,13 @@ ds_aat
 \description{
 The JASMIN1 AAT was an irrelevant feature task, in which participants were instructed to
 approach/avoid left/right rotated stimuli. This particular AAT was administered (and described in detail) in 
-\href{https://doi.org/10.1111/add.14071}{Boffo et al., 2018}. Participants were presented stimuli from a "test"
+\doi{10.1111/add.14071}{Boffo et al., 2018}. Participants were presented stimuli from a "test"
 category, which were gambling-related pictures, and from a "control" category, which were pictures unrelated
 to gambling. It registered approach responses by participants pressing (and holding) the arrow down key,
 while avoid responses were given via the arrow up key. Upon a response, the stimulus zoomed in or
 out, until it disappeared from the screen. The first response to a stimulus was logged. 
 The dataset contains one row per trial.
-This dataset was graciously provided by \href{https://www.researchgate.net/profile/Eva_Schmitz4}{Eva Schmitz}.
+This dataset was graciously provided by \href{https://www.researchgate.net/profile/Eva-Schmitz}{Eva Schmitz}.
 }
 \details{
 Overview of columns:

@@ -19,7 +19,7 @@ Returns the absolute difference of the mean of \code{x} and \code{y}
 divided by their shared standard deviation. Since the resulting difference 
 is absolute, the larger of the two means is always used as minuend and the
 smallest as subtrahend. Based on 
-\href{https://doi.org/10.1016/j.ygeno.2006.12.014}{Zhang (2012)}
+Zhang (2012) <\doi{10.1016/j.ygeno.2006.12.014}>
 }
 \examples{
 # Generate two variables with different means, variances and a correlation of about 0.5

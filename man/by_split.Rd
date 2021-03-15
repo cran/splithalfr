@@ -14,6 +14,7 @@ by_split(
   replace = FALSE,
   split_p = 0.5,
   subsample_p = 1,
+  subsample_n = NULL,
   careful = TRUE,
   match_participants = FALSE,
   ncores = detectCores(),
@@ -53,6 +54,9 @@ is larger than 1 and \code{careful} is FALSE, then parts are automatically
 sampled with replacement}
 
 \item{subsample_p}{(numeric) Subsample a proportion of \code{stratum} before
+splitting.}
+
+\item{subsample_n}{(numeric) Subsample a number of participants before
 splitting.}
 
 \item{careful}{(boolean) If TRUE, stop with an error when called with
