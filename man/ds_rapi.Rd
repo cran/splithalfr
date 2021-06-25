@@ -12,7 +12,7 @@ ds_rapi
 }
 \description{
 The RAPI is a questionnaire which asks how often a participant experienced each of 23 alcohol-related
-problems within the last year (\href{http://www.emcdda.europa.eu/html.cfm/index4200EN.html}{White & Labouvie, 1989}).
+problems within the last year (\doi{https://doi.org/10.15288/jsa.1989.50.30}{White & Labouvie, 1989}).
 The dataset contains one row per participant.
 }
 \details{

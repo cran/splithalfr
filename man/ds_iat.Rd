@@ -12,7 +12,7 @@ ds_iat
 }
 \description{
 The JASMIN2 IAT closely followed the original IAT procedure
-(\doi{10.1037/0022-3514.74.6.1464}{Greenwald, McGhee, & Schwartz, 1998}),
+(\href{https://pubmed.ncbi.nlm.nih.gov/9654756/}{Greenwald, McGhee, & Schwartz, 1998}),
 except that target and attribute trials did not alternate.  Upon a correct response, the next trial started.
 Upon an incorrect response, the current trial was repeated. The response to each trial was logged.
 This particular dataset is from a Ethnicity-Valence IAT, which was administered (and described in detail) in 
