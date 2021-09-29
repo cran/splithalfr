@@ -66,24 +66,6 @@ whole number, so each of the splits has the same size. }
 stratum = letters[1:9]
 indexes = get_split_indexes_from_stratum(stratum)
 apply_split_indexes_to_stratum(stratum, indexes[[1]], indexes[[2]])
-# First-second split, The middle element is randomly assigned to part 1 or 2
-split_stratum(1 : 9, method = "first_second")
-# Odd-even split
-split_stratum(1 : 9, method = "odd_even")
-# Random split. One of the splits gets randomly gets 4 elements; the other 5
-split_stratum(1 : 9)
-# Random split, using half of the stratum (4.5 elements, rounded up to 5)
-split_stratum(1 : 9, subsample_p = 0.5)
-# Random splits with same size as stratum by sampling with replacement
-split_stratum(1 : 9, split_p = 1, replace = TRUE)
-# Random splits, same size as stratum, using half of stratum
-split_stratum(1 : 9, subsample_p = 0.5, split_p = 1, replace = TRUE)
-# Random split with replacement; each part gets 5 elements (4.5 rounded up)
-split_stratum(1 : 9, replace = TRUE)
-# Random split on a data frame
-split_stratum(data.frame(x = 1 : 4, y = 5 : 8))
-# Random split on a list
-split_stratum(list(p = 1, q = 2, r = 3, s = 4))
 }
 \seealso{
 Other splitting functions: 

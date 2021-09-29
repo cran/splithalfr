@@ -245,7 +245,7 @@ data.frame(
 </div>
 <div id="calculating-reliability-coefficients" class="section level2">
 <h2>Calculating reliability coefficients</h2>
-<p>Next, the output of <code>by_split</code> can be analyzed in order to estimate reliability. By default, functions are provided that calculate Spearman-Brown adjusted Pearson correlations (<code>spearman_brown</code>), Flanagan-Rulon (<code>flanagan_rulon</code>), Angoff-Feldt (<code>angoff_feldt</code>), and Intraclass Correlation (<code>short_icc</code>) coefficients. Each of these coefficient functions can be used with <code>split_coef</code> to calculate the corresponding coefficients per split, which can then be plotted or averaged via a simple <code>mean</code>. A bias-corrected and accelerated bootstrap confidence interval can be calculated via <code>split_ci</code>.</p>
+<p>Next, the output of <code>by_split</code> can be analyzed in order to estimate reliability. By default, functions are provided that calculate Spearman-Brown adjusted Pearson correlations (<code>spearman_brown</code>), Flanagan-Rulon (<code>flanagan_rulon</code>), Angoff-Feldt (<code>angoff_feldt</code>), and Intraclass Correlation (<code>short_icc</code>) coefficients. Each of these coefficient functions can be used with <code>split_coef</code> to calculate the corresponding coefficients per split, which can then be plotted or averaged via a simple <code>mean</code>. A bias-corrected and accelerated bootstrap confidence interval can be calculated via <code>split_ci</code>. Note that estimating the confidence interval involves very intensive calculations, so it can take a long time to complete.</p>
 <pre><code># Spearman-Brown adjusted Pearson correlations per replication
 coefs &lt;- split_coefs(split_scores, spearman_brown)
 # Distribution of coefficients
@@ -253,7 +253,7 @@ hist(coefs)
 # Mean of coefficients
 mean(coefs)
 # Confidence interval of coefficients
-split_ci(split_scores, coefs)</code></pre>
+split_ci(split_scores, spearman_brown)</code></pre>
 </div>
 </div>
 

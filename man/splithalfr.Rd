@@ -59,6 +59,7 @@ for making datasets available for inclusion in the splithalfr.
 Additionally, I would like to thank 
 \href{https://www.researchgate.net/profile/Craig-Hedge}{Craig Hedge} and 
 \href{https://www.swinburne.edu.au/research/our-research/access-our-research/find-a-researcher-or-supervisor/researcher-profile/?id=bwilliams}{Benedict Williams}
-for sharing R-scripts with scoring algorithms that were adapted for splithalfr vignettes.
+for sharing R-scripts with scoring algorithms that were adapted for splithalfr vignettes. 
+Finally, I would like to thank \href{https://www.researchgate.net/profile/Mae-Nuijs}{Mae Nuys} and Maren Sera for spotting bugs in earlier versions of this package.
 }
 
