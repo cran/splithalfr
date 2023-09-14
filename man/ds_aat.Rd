@@ -19,7 +19,7 @@ to gambling. It registered approach responses by participants pressing (and hold
 while avoid responses were given via the arrow up key. Upon a response, the stimulus zoomed in or
 out, until it disappeared from the screen. The first response to a stimulus was logged. 
 The dataset contains one row per trial.
-This dataset was graciously provided by \href{https://www.researchgate.net/profile/Eva-Schmitz}{Eva Schmitz}.
+This dataset was graciously provided by Eva Schmitz.
 }
 \details{
 Overview of columns:

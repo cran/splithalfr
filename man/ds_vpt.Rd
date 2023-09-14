@@ -21,7 +21,7 @@ of a cognitive bias modification study. The "test" stimuli were alcoholic bevera
 were non-alcoholic beverages, selected from the Amsterdam Beverage Picture Set
 \doi{10.1111/acer.12853}{(Pronk, Deursen, Beraha, Larsen, & Wiers, 2015)}.
 The dataset contains one row per trial.
-This dataset was graciously provided by \href{https://www.researchgate.net/profile/Marilisa-Boffo}{Marilisa Boffo}.
+This dataset was graciously provided by Marilisa Boffo.
 }
 \details{
 Overview of columns:

@@ -17,7 +17,7 @@ except that target and attribute trials did not alternate.  Upon a correct respo
 Upon an incorrect response, the current trial was repeated. The response to each trial was logged.
 This particular dataset is from a Ethnicity-Valence IAT, which was administered (and described in detail) in 
 \doi{10.1016/j.tate.2019.102887}{Abacioglu and colleagues (2019)}. 
-This dataset was graciously provided by \href{https://www.uva.nl/en/profile/h/a/f.hanna/f.hanna.html}{Fadie Hanna} and \href{https://www.researchgate.net/profile/Marjolein-Zee-2}{Marjolein Zee}.
+This dataset was graciously provided by Fadie Hanna and Marjolein Zee.
 }
 \details{
 Overview of columns:

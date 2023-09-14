@@ -1,6 +1,17 @@
 # splithalfr: Split-Half Reliabilities
 Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires. 
 
+## How to cite
+Please cite the software and the compendium paper.
+
+### Paper citation 
+
+Pronk, T., Molenaar, D., Wiers, R. W., & Murre, J. M. J. (2021). Methods to split cognitive task data for estimating split-half reliability: A comprehensive review and systematic assessment. *Psychonomic Bulletin & Review*. https://doi.org/10.3758/s13423-021-01948-3
+
+### Software citation (for version 2.2.2)
+
+Pronk, T. (2023). *splithalfr: Estimates split-half reliabilities for scoring algorithms of cognitive tasks and questionnaires* (Version 2.2.2) [Computer software]. https://doi.org/10.5281/zenodo.7777894
+
 ## Getting started
 We've got six short vignettes to help you get started. You can open a vignette bij running the corresponding code snippets `vignette(...)` in the R console.
 
@@ -15,8 +26,8 @@ We've got six short vignettes to help you get started. You can open a vignette b
 The splithalfr supports a variety of methods for splitting your data. We review and assess each  method in the compendium paper ([Pronk et al., 2021](https://doi.org/10.3758/s13423-021-01948-3)). This vignette illustrates how to apply each splitting method via the splithalfr: `vignette("splitting_methods")` 
 * first-second and odd-even ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3); [Webb, Shavelson, & Haertel, 1996](https://doi.org/10.1016/S0169-7161(06)26004-8); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001))
 * stratified ([Green et al., 2016](https://doi.org/10.3758/s13423-015-0968-3))
-* permutated/bootstrapped/random sample of split halves ([Kopp, Lange, & Steinke, 2021](https://doi.org/10.1177/1073191119866257), [Parsons, Kruijt, & Fox, 2019](https://doi.org/10.1177/2515245919879695); [Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001))
-* Monte Carlo ([Williams & Kaufmann, 1996](https://doi.org/10.1016/j.jesp.2012.03.001))
+* permutated/bootstrapped/random sample of split halves ([Kopp, Lange, & Steinke, 2021](https://doi.org/10.1177/1073191119866257), [Parsons, Kruijt, & Fox, 2019](https://doi.org/10.1177/2515245919879695); [Williams & Kaufmann, 2012](https://doi.org/10.1016/j.jesp.2012.03.001))
+* Monte Carlo ([Williams & Kaufmann, 2012](https://doi.org/10.1016/j.jesp.2012.03.001))
 
 ## Validation of split-half estimations
 Part of the splithalfr algorithm has been validated via a set of simulations that are not included in this package. The R script for these simulations can be found [here](https://github.com/tpronk/splithalfr_simulation).
@@ -25,4 +36,4 @@ Part of the splithalfr algorithm has been validated via a set of simulations tha
 These R packages offer bootstrapped split-half reliabilities for specific scoring algorithms and are available via CRAN at the time of this writing:  [multicon](https://cran.r-project.org/package=multicon), [psych](https://cran.r-project.org/package=psych), and [splithalf](https://cran.r-project.org/package=splithalf).
 
 ## Acknowledgments:
-I would like to thank [Craig Hedge](https://www.researchgate.net/profile/Craig-Hedge), [Eva Schmitz](https://www.researchgate.net/profile/Eva-Schmitz), [Fadie Hanna](https://www.uva.nl/en/profile/h/a/f.hanna/f.hanna.html), [Helle Larsen](https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en), [Marilisa Boffo](https://www.researchgate.net/profile/Marilisa-Boffo), and [Marjolein Zee](https://www.researchgate.net/profile/Marjolein-Zee-2), for making datasets available for inclusion in the splithalfr. Additionally, I would like to thank [Craig Hedge](https://www.researchgate.net/profile/Craig-Hedge) and [Benedict Williams](https://www.swinburne.edu.au/research/our-research/access-our-research/find-a-researcher-or-supervisor/researcher-profile/?id=bwilliams) for sharing R-scripts with scoring algorithms that were adapted for splithalfr vignettes.
+I would like to thank Craig Hedge, Eva Schmitz, Fadie Hanna, [Helle Larsen](https://scholar.google.com/citations?user=ugPnkjEAAAAJ&hl=en), Marilisa Boffo, and Marjolein Zee, for making datasets available for inclusion in the splithalfr. Additionally, I would like to thank Craig Hedge and [Benedict Williams](https://www.swinburne.edu.au/research/our-research/access-our-research/find-a-researcher-or-supervisor/researcher-profile/?id=bwilliams) for sharing R-scripts with scoring algorithms that were adapted for splithalfr vignettes. Finally, I would like to thank Mae Nuijs and Sera-Maren Wiechert for spotting bugs in earlier versions of this package.

@@ -8,7 +8,9 @@ intervals for coefficients averaged across split replications}
 split_ci(
   ds,
   fn_coef,
-  fn_average = function(values) {     mean(values, na.rm = TRUE) },
+  fn_average = function(values) {
+     mean(values, na.rm = TRUE)
+ },
   replications = 1000,
   ...
 )

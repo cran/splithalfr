@@ -15,7 +15,7 @@ The Stop Signal Task is a task in which participants responded whether a stimulu
 On 25% of trials the participant heard a tone that indicated that the participant should withhold their response.
 This particular dataset is from the first session of a study that is 
 described in detail in \doi{10.1016/j.tate.2019.102887}{Hedge, Powell, and Sumner (2018)}. 
-It was graciously provided by \href{https://www.researchgate.net/profile/Craig-Hedge}{Craig Hedge} and can
+It was graciously provided by Craig Hedge and can
 be obtained from \href{https://osf.io/cwzds}{https://osf.io/cwzds}.
 }
 \details{
