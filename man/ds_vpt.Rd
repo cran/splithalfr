@@ -19,7 +19,7 @@ upon an incorrect response the current trial was repeated. Only the first respon
 This particular VPT was part of the pre-measurement
 of a cognitive bias modification study. The "test" stimuli were alcoholic beverages and the "control" stimuli
 were non-alcoholic beverages, selected from the Amsterdam Beverage Picture Set
-\doi{10.1111/acer.12853}{(Pronk, Deursen, Beraha, Larsen, & Wiers, 2015)}.
+(Pronk et al., 2015) <\doi{10.1111/acer.12853}>.
 The dataset contains one row per trial.
 This dataset was graciously provided by Marilisa Boffo.
 }

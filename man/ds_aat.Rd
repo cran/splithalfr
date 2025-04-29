@@ -13,7 +13,7 @@ ds_aat
 \description{
 The JASMIN1 AAT was an irrelevant feature task, in which participants were instructed to
 approach/avoid left/right rotated stimuli. This particular AAT was administered (and described in detail) in 
-\doi{10.1111/add.14071}{Boffo et al., 2018}. Participants were presented stimuli from a "test"
+Boffo et al. (2018) <\doi{10.1111/add.14071}>. Participants were presented stimuli from a "test"
 category, which were gambling-related pictures, and from a "control" category, which were pictures unrelated
 to gambling. It registered approach responses by participants pressing (and holding) the arrow down key,
 while avoid responses were given via the arrow up key. Upon a response, the stimulus zoomed in or

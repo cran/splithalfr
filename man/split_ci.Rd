@@ -2,16 +2,16 @@
 % Please edit documentation in R/split_aggregations.R
 \name{split_ci}
 \alias{split_ci}
-\title{Calculate nonparametric bias-corrected and accelerated bootstrap confidence
-intervals for coefficients averaged across split replications}
+\title{Generate bootstrap replicates of a coefficient split-half reliability
+estimate by sampling participants}
 \usage{
 split_ci(
   ds,
   fn_coef,
-  fn_average = function(values) {
-     mean(values, na.rm = TRUE)
- },
-  replications = 1000,
+  fn_average,
+  bootstrap_replications = 1000,
+  parallel = "snow",
+  ncpus = detectCores(),
   ...
 )
 }
@@ -19,48 +19,59 @@ split_ci(
 \item{ds}{(data frame) a data frame with columns \code{split},
 \code{score_1}, and \code{score_2}}
 
-\item{fn_coef}{(function) a function that calculates a bivariate coefficient.}
+\item{fn_coef}{(function) a function that calculates a bivariate
+(reliability) coefficient}
 
-\item{fn_average}{(function) a function that calculates an average across coefficients}
+\item{fn_average}{(function) a function that calculates an average across
+coefficients}
 
-\item{replications}{(integer) number of bootstrap replications}
+\item{bootstrap_replications}{(integer) number of bootstrap replications}
 
-\item{...}{Additional arguments passed to \code{\link[bcaboot]{bcajack}}}
+\item{parallel}{(character) Type of parallel processing (if any) used for bootstrapping. See \code{\link[boot]{boot}}}
+
+\item{ncpus}{(character) Number of cores for parallel processing. See \code{\link[boot]{boot}}}
+
+\item{...}{Additional arguments passed to \code{\link[boot]{boot}}}
 }
 \value{
 Confidence interval
 }
 \description{
-Calculates nonparametric bias-corrected and accelerated bootstrap confidence intervals
-via \code{\link[bcaboot]{bcajack}}. Coefficients are \code{ds} should be a data frame as returned by
-\code{\link{by_split}}: Each unique value of the column \code{participant} is considered a independent
-sample of the target population. For each unique value of the column \code{split} in
-\code{ds}, it selects the corresponding rows in \code{ds}, and passes the
-values in the columns \code{score_1} and \code{score_2} as the first and
-second argument to \code{fn_coef}. Any row in \code{ds} for which
+Generates bootstrap replicates via \code{\link[boot]{boot}}. The parameter
+\code{ds} should be a data frame as returned by \code{\link{by_split}}: Each
+unique value of the column \code{participant} is considered a independent
+sample of the target population. For each unique value of the column
+\code{split} in \code{ds}, it selects the corresponding rows in \code{ds},
+and passes the values in the columns \code{score_1} and \code{score_2} as the
+first and second argument to \code{fn_coef}. Any row in \code{ds} for which
 \code{score_1} or \code{score_2} is NA is pairwise removed before passing the
 data to \code{fn_coef}. Any coefficient that is NA is removed before passing
-the data to to \code{fn_summary}.
+the data to \code{fn_summary}.
 }
 \details{
-For averaging internal consistency coefficients, see Feldt and Charter (2006). For more 
-information about bias-corrected and accelerated bootstrap confidence intervals, see
-Efron (1987).
+For a practical example, see one of the vignettes for getting started with
+the splithalfr. Also, note that the boot package supports parallel processing
+via the parameters `parallel` and `ncpus`.
+
+For averaging internal consistency coefficients, see Feldt and Charter
+(2006). For more information about bias-corrected and accelerated bootstrap
+confidence intervals, see Efron (1987).
 }
 \section{References}{
 
 
  Efron, B. (1987). Better bootstrap confidence intervals. \emph{Journal of the
  American statistical Association}, 82(397), 171-185.
- \doi{10.1080/01621459.1987.10478410}
+  \doi{10.1080/01621459.1987.10478410}
 
- Feldt, L. S., & Charter, R. A. (2006). Averaging internal consistency
- reliability coefficients. \emph{Educational and Psychological Measurement},
- 66(2), 215-227.
- \doi{10.1177/0013164404273947}
+  Feldt, L. S., & Charter, R. A. (2006). Averaging internal consistency
+  reliability coefficients. \emph{Educational and Psychological Measurement},
+  66(2), 215-227. \doi{10.1177/0013164404273947}
 }
 
 \examples{
+# Import boot library
+library(boot)
 # Generate five splits with scores that are correlated 0.00, 0.25, 0.5, 0.75, and 1.00
 library(MASS)
 ds_splits = data.frame(V1 = numeric(), V2 = numeric(), split = numeric())
@@ -69,8 +80,10 @@ for (r in 0:4) {
   ds_splits = rbind(ds_splits, cbind(vars, r, 1 : 10))
 }
 names(ds_splits) = c("score_1", "score_2", "replication", "participant")
-# Calculate confidence interval
-split_ci(ds_splits, cor)
+# Conduct bootstrap
+bootstrap_result <- split_ci(ds_splits, cor, mean, parallel = "no")
+# Get boosted and accelerated confidence intervals
+print(boot.ci(bootstrap_result, type="bca"))
 }
 \seealso{
 Other split aggregation functions: 

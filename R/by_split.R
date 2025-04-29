@@ -7,7 +7,7 @@
 #' \code{\link{splithalfr}}, see the included vignettes. \code{\link{by_split}}
 #' is modeled after the \code{\link{by}} function, accepting similar values for
 #' the first three arguments (\code{data}, \code{INDICES}, \code{FUN}). For more
-#' information about different metods for splitting data, see
+#' information about different methods for splitting data, see
 #' \code{\link{get_split_indexes_from_stratum}}. For more information about 
 #' stratification, see \code{\link{split_df}}
 #'
@@ -16,7 +16,7 @@
 #'   item.
 #' @param participants (vector) Vector that identifies participants in
 #'   \code{data}.
-#' @param fn_score (function) receives full or split sets, should return a
+#' @param fn_score (function) This function receives split data and should return a
 #'   single number.
 #' @param stratification (vector). Vector that identifies which subsets of
 #'   \code{data} should be split separately (denoted as strata in splitting
@@ -32,11 +32,11 @@
 #' @param split_p (numeric) Desired length of both parts, expressed as a
 #'   proportion of the length of the data per participant. If \code{split_p}
 #'   is larger than 1 and \code{careful} is FALSE, then parts are automatically
-#'   sampled with replacement
+#'   sampled with replacement.
 #' @param subsample_n (numeric) Subsample a number of participants before
 #'   splitting.
 #' @param subsample_p (numeric) Subsample a proportion of \code{stratum} before
-#'   splitting.
+#'   splitting. See Figure 1 of Pronk et al. (2023) <\doi{10.3758/s13428-022-01885-6}>
 #' @param careful (boolean) If TRUE, stop with an error when called with
 #'   arguments that may yield unexpected splits
 #' @param match_participants (logical) Default FALSE. If FALSE, the split-halves
@@ -175,7 +175,7 @@ by_split <- function (
           setTxtProgressBar(pb, i)
         }
         participant_id <- participant_ids[i]
-        tryCatch({check_strata(ds_base, data[[participant_id]])},
+        tryCatch({check_strata(ds_base, data[[i]])},
           error = function(e) {
            stop(paste(
              "For participant", participant_id, "the strata specified",
@@ -201,11 +201,27 @@ by_split <- function (
   
   # Setup serial or parallel lapply
   if (ncores == 1) {
+    # Serial lapply
     fn_apply <- lapply
     if (verbose) {
       pb <- txtProgressBar(min = 0, max = replications, style = 3)    
     }
   } else {
+    # Parallel lapply
+    if (ncores < 1) {
+      stop(paste0(
+        "The number of CPU cores specified via ncores (", ncores, ") ",
+        "should at least be 1." 
+      ))
+    }
+    if (ncores > detectCores()) {
+      stop(paste0(
+        "The number of CPU cores specified via ncores (", ncores, ") ",
+        "was higher than the number available (", detectCores(), "). ",
+        "Leave ncores unspecified to have splithalfr::by_split use all available ",
+        "CPU cores or set ncores = 1 to run in serial mode."
+      ))
+    }
     cl <- makeCluster(ncores)
     clusterExport(cl, list(
       "bind_rows", "ncores",

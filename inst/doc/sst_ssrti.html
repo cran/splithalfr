@@ -49,7 +49,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -60,7 +60,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -468,19 +468,36 @@ Spearman-Brown adjusted Pearson correlations
 and Intraclass Correlation (<code>short_icc</code>) coefficients. Each
 of these coefficient functions can be used with <code>split_coef</code>
 to calculate the corresponding coefficients per split, which can then be
-plotted or averaged via a simple <code>mean</code>. A bias-corrected and
-accelerated bootstrap confidence interval can be calculated via
-<code>split_ci</code>. Note that estimating the confidence interval
-involves very intensive calculations, so it can take a long time to
-complete.</p>
+plotted or averaged, for instance via a simple <code>mean</code>.</p>
 <pre><code># Spearman-Brown adjusted Pearson correlations per replication
 coefs &lt;- split_coefs(split_scores, spearman_brown)
 # Distribution of coefficients
 hist(coefs)
 # Mean of coefficients
-mean(coefs)
-# Confidence interval of coefficients
-split_ci(split_scores, spearman_brown)</code></pre>
+mean(coefs)</code></pre>
+</div>
+<div id="calculating-bootstrapped-confidence-intervals-for-population-reliability-coefficient" class="section level2">
+<h2>Calculating bootstrapped confidence intervals for population
+reliability coefficient</h2>
+<p>Finally, we can estimate the Calculate bootstrapped confidence
+intervals for the value of the reliability coefficient in the population
+by bootstrapping participants. For this, we’ll need to repeatedly sample
+participants from the population, calculate a collection of reliability
+coefficients between the split scores of that sample of participants,
+and average those coefficients together. Hence, the call to
+<code>split_ci</code> below, takes (1) the split scores produced by
+calling <code>by_split</code> (<code>split_scores</code>), (2) the
+reliability coefficient we used above (<code>spearman_brown</code>), and
+(3) the method for averaging coefficients we used above
+(<code>mean</code>).</p>
+<p><em>The bootstrap can take even longer than the split, and doesn’t
+show any progress bar, but it also uses all available CPU cores by
+default.</em></p>
+<pre><code># Conduct a bootstrap (of participants)
+bootstrap_result &lt;- split_ci(split_scores, spearman_brown, mean)
+# Report confidence intervals
+library(boot)
+print(boot.ci(bootstrap_result, type=&quot;bca&quot;))</code></pre>
 </div>
 </div>
 
